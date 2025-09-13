@@ -1,8 +1,56 @@
 @use "@carbon/react";
 @use "@/components/Header/header";
-// @use "@/components/home/homepage";
 @import "tailwindcss";
 
+html,
 body {
+  background: #fff;
+  color: #222;
+  transition: background 0.2s, color 0.2s;
   font-family: Arial, Helvetica, sans-serif;
+}
+
+html.dark,
+body.dark {
+  background: #161616;
+  color: #f4f4f4;
+}
+
+.dark .homepage,
+html.dark .homepage {
+  background: #161616 !important;
+  color: #f4f4f4 !important;
+}
+
+html.dark .gunasoRegistration,
+body.dark .gunasoRegistration {
+  background: #23272f !important;
+}
+
+html.dark .gunasoRegistration > div,
+body.dark .gunasoRegistration > div {
+  background: #222 !important;
+  color: #f4f4f4 !important;
+  border-color: #333 !important;
+}
+
+html.dark .gunasoRegistration label,
+html.dark .gunasoRegistration input,
+html.dark .gunasoRegistration textarea,
+html.dark .gunasoRegistration .bx--dropdown,
+html.dark .gunasoRegistration .bx--radio-button__label,
+html.dark .gunasoRegistration .bx--radio-button__appearance {
+  color: #f4f4f4 !important;
+  background: #23272f !important;
+  border-color: #333 !important;
+}
+
+html.dark .gunasoRegistration input,
+html.dark .gunasoRegistration textarea {
+  background: #23272f !important;
+}
+
+html.dark .gunasoRegistration .bx--dropdown-list {
+  background: #23272f !important;
+  color: #f4f4f4 !important;
 }
