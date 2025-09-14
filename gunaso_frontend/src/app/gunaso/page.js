@@ -1,7 +1,6 @@
 "use client";
 import {
   Button,
-  TextInput,
   Dropdown,
   Form,
   RadioButtonGroup,
@@ -56,15 +55,12 @@ export default function GunasoForm() {
 
     try {
       setLoading(true);
-      const response = await axios.post(
-        `${process.env.NEXT_PUBLIC_API_URL}/gunaso`,
-        payload
-      );
-      alert("Gunas submitted successfully!");
+      await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/gunaso`, payload);
+      alert("Gunaso submitted successfully!");
       setFullName("");
       setSelectedCategory(null);
       setGunasotext("");
-      setDate(null);
+      setDate("");
       setSeverity("Minor");
     } catch (error) {
       console.error("Error submitting gunaso:", error);
@@ -75,61 +71,105 @@ export default function GunasoForm() {
   };
 
   return (
-    <div className="flex gap-15 items-center justify-center">
-      <h1>Gunaso</h1>
+    <div className="gunasoRegistration min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-100 via-white to-indigo-50 p-10">
+      <div className="w-full max-w-2xl bg-white shadow-2xl rounded-2xl border border-gray-100">
+        {/* Title */}
+        <h1 className="text-3xl font-extrabold text-center mb-8 tracking-wide">
+          Submit Your Gunaso
+        </h1>
 
-      <Form className="flex flex-col gap-4 w-1/3" onSubmit={handleSubmit}>
-        <TextInput
-          labelText="Full Name"
-          placeholder="Enter Your Full Name"
-          value={fullName}
-          onChange={(e) => setFullName(e.target.value)}
-        />
-
-        <Dropdown
-          id="carbon-dropdown"
-          titleText="Select an issue type"
-          label="Issue Type"
-          items={categories}
-          itemToString={(item) => (item ? item.text : "")}
-          selectedItem={selectedCategory}
-          onChange={(e) => setSelectedCategory(e.selectedItem)}
-        />
-
-        <TextInput
-          labelText="Enter your gunaso"
-          placeholder="Enter Your Gunaso"
-          value={gunasoText}
-          onChange={(e) => setGunasotext(e.target.value)}
-        />
-
-        <label className="text-zinc-400 text-xs block">
-          Select Date
-          <input
-            className="w-full bg-zinc-100 p-3 border-b-1 border-gray-400 rounded"
-            type="date"
-            value={date}
-            onChange={(e) => setDate(e.target.value)}
-          />
-        </label>
-
-        <RadioButtonGroup
-          orientation="horizontal"
-          legendText="Select the severity of the issue"
-          name="radio-button-group-3"
-          defaultSelected="Minor"
-          valueSelected={severity}
-          onChange={(e) => setSeverity(e)}
+        <Form
+          className="flex flex-col gap-6 p-4 sm:p-6 md:p-8"
+          onSubmit={handleSubmit}
         >
-          <RadioButton labelText="Minor" value="Minor" id="Minor" />
-          <RadioButton labelText="Major" value="Major" id="Major" />
-          <RadioButton labelText="Critical" value="Critical" id="Critical" />
-        </RadioButtonGroup>
+          {/* Full Name */}
+          <div>
+            <label className="block text-gray-700 font-medium mb-2 p-3">
+              Full Name
+            </label>
+            <input
+              type="text"
+              placeholder="Enter your full name"
+              value={fullName}
+              onChange={(e) => setFullName(e.target.value)}
+              className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200 shadow-sm placeholder-gray-400"
+            />
+          </div>
 
-        <Button type="submit" disabled={loading}>
-          {loading ? "Submitting..." : "Submit"}
-        </Button>
-      </Form>
+          {/* Category */}
+          <div>
+            <label className="block text-gray-700 font-medium mb-2 p-3">
+              Issue Category
+            </label>
+            <Dropdown
+              id="carbon-dropdown"
+              label="Select Category"
+              titleText=""
+              items={categories}
+              itemToString={(item) => (item ? item.text : "")}
+              selectedItem={selectedCategory}
+              onChange={(e) => setSelectedCategory(e.selectedItem)}
+            />
+          </div>
+
+          {/* Gunaso Text */}
+          <div>
+            <label className="block text-gray-700 font-medium mb-2 p-3">
+              Your Gunaso
+            </label>
+            <textarea
+              rows="4"
+              placeholder="Describe your issue in detail..."
+              value={gunasoText}
+              onChange={(e) => setGunasotext(e.target.value)}
+              className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200 shadow-sm placeholder-gray-400 resize-none"
+            />
+          </div>
+
+          {/* Date */}
+          <div>
+            <label className="block text-gray-700 font-medium mb-2 p-3">
+              Select Date
+            </label>
+            <input
+              type="date"
+              value={date}
+              onChange={(e) => setDate(e.target.value)}
+              className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200 shadow-sm"
+            />
+          </div>
+
+          {/* Severity */}
+          <div>
+            <RadioButtonGroup
+              orientation="horizontal"
+              legendText="Severity of the issue"
+              name="severity-group"
+              valueSelected={severity}
+              onChange={(e) => setSeverity(e)}
+            >
+              <RadioButton labelText="Minor" value="Minor" id="Minor" />
+              <RadioButton labelText="Major" value="Major" id="Major" />
+              <RadioButton
+                labelText="Critical"
+                value="Critical"
+                id="Critical"
+              />
+            </RadioButtonGroup>
+          </div>
+
+          {/* Submit - Centered */}
+          <div className="flex justify-center mt-4">
+            <Button
+              type="submit"
+              disabled={loading}
+              className="!bg-indigo-600 !text-white !px-8 !py-3 !rounded-xl !font-semibold hover:!bg-indigo-700 shadow-md transition-transform transform hover:scale-105"
+            >
+              {loading ? "Submitting..." : "Submit"}
+            </Button>
+          </div>
+        </Form>
+      </div>
     </div>
   );
 }
