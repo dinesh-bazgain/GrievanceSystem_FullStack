@@ -72,19 +72,16 @@ export default function GunasoForm() {
 
   return (
     <div className="gunasoRegistration min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-100 via-white to-indigo-50 p-10">
-      <div className="w-full max-w-2xl bg-white shadow-2xl rounded-2xl border border-gray-100">
+      <div className="w-full max-w-2xl bg-white shadow-2xl rounded-2xl border border-gray-100 px-10 py-12">
         {/* Title */}
-        <h1 className="text-3xl font-extrabold text-center mb-8 tracking-wide">
+        <h1 className="text-3xl font-extrabold text-center mb-12 tracking-wide">
           Submit Your Gunaso
         </h1>
 
-        <Form
-          className="flex flex-col gap-6 p-4 sm:p-6 md:p-8"
-          onSubmit={handleSubmit}
-        >
+        <Form className="flex flex-col gap-10" onSubmit={handleSubmit}>
           {/* Full Name */}
-          <div>
-            <label className="block text-gray-700 font-medium mb-2 p-3">
+          <div className="mb-4">
+            <label className="block text-gray-700 font-medium mb-4 pl-1">
               Full Name
             </label>
             <input
@@ -92,13 +89,13 @@ export default function GunasoForm() {
               placeholder="Enter your full name"
               value={fullName}
               onChange={(e) => setFullName(e.target.value)}
-              className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200 shadow-sm placeholder-gray-400"
+              className="w-full px-5 py-4 rounded-xl border border-gray-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200 shadow-sm placeholder-gray-400"
             />
           </div>
 
           {/* Category */}
-          <div>
-            <label className="block text-gray-700 font-medium mb-2 p-3">
+          <div className="mb-4">
+            <label className="block text-gray-700 font-medium mb-4 pl-1">
               Issue Category
             </label>
             <Dropdown
@@ -109,44 +106,46 @@ export default function GunasoForm() {
               itemToString={(item) => (item ? item.text : "")}
               selectedItem={selectedCategory}
               onChange={(e) => setSelectedCategory(e.selectedItem)}
+              className="w-full"
             />
           </div>
 
           {/* Gunaso Text */}
-          <div>
-            <label className="block text-gray-700 font-medium mb-2 p-3">
+          <div className="mb-4">
+            <label className="block text-gray-700 font-medium mb-4 pl-1">
               Your Gunaso
             </label>
             <textarea
-              rows="4"
+              rows="5"
               placeholder="Describe your issue in detail..."
               value={gunasoText}
               onChange={(e) => setGunasotext(e.target.value)}
-              className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200 shadow-sm placeholder-gray-400 resize-none"
+              className="w-full px-5 py-4 rounded-xl border border-gray-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200 shadow-sm placeholder-gray-400 resize-none"
             />
           </div>
 
           {/* Date */}
-          <div>
-            <label className="block text-gray-700 font-medium mb-2 p-3">
+          <div className="mb-4">
+            <label className="block text-gray-700 font-medium mb-4 pl-1">
               Select Date
             </label>
             <input
               type="date"
               value={date}
               onChange={(e) => setDate(e.target.value)}
-              className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200 shadow-sm"
+              className="w-full px-5 py-4 rounded-xl border border-gray-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200 shadow-sm"
             />
           </div>
 
           {/* Severity */}
-          <div>
+          <div className="mb-4">
             <RadioButtonGroup
               orientation="horizontal"
               legendText="Severity of the issue"
               name="severity-group"
               valueSelected={severity}
               onChange={(e) => setSeverity(e)}
+              className="flex gap-8"
             >
               <RadioButton labelText="Minor" value="Minor" id="Minor" />
               <RadioButton labelText="Major" value="Major" id="Major" />
@@ -159,11 +158,11 @@ export default function GunasoForm() {
           </div>
 
           {/* Submit - Centered */}
-          <div className="flex justify-center mt-4">
+          <div className="flex justify-center mt-6">
             <Button
               type="submit"
               disabled={loading}
-              className="!bg-indigo-600 !text-white !px-8 !py-3 !rounded-xl !font-semibold hover:!bg-indigo-700 shadow-md transition-transform transform hover:scale-105"
+              className="!bg-indigo-600 !text-white !px-10 !py-4 !rounded-xl !font-semibold hover:!bg-indigo-700 shadow-md transition-transform transform hover:scale-105"
             >
               {loading ? "Submitting..." : "Submit"}
             </Button>
