@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Link from "next/link";
 
 export default function Homepage() {
   const [isVisible, setIsVisible] = useState(false);
@@ -68,9 +69,11 @@ export default function Homepage() {
               </span>
               <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-10 rounded-2xl transition-opacity duration-300"></div>
             </a>
-            <button className="group border-2 border-indigo-600 text-indigo-600 dark:border-indigo-400 dark:text-indigo-400 font-semibold px-12 py-6 rounded-2xl transition-all duration-300 transform hover:scale-105 hover:bg-indigo-50 dark:hover:bg-indigo-900/20 min-w-[220px] text-lg flex items-center justify-center">
-              <span className="text-center w-full">Learn More</span>
-            </button>
+            <Link href="/aboutUs">
+              <button className="group border-2 border-indigo-600 text-indigo-600 dark:border-indigo-400 dark:text-indigo-400 font-semibold px-12 py-6 rounded-2xl transition-all duration-300 transform hover:scale-105 hover:bg-indigo-50 dark:hover:bg-indigo-900/20 min-w-[220px] text-lg flex items-center justify-center">
+                <span className="text-center w-full">Learn More</span>
+              </button>
+            </Link>
           </div>
 
           {/* Stats Section */}
