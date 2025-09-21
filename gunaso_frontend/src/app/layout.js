@@ -1,6 +1,5 @@
 import "./globals.scss";
 import { Providers } from "./providers";
-import Headers from "@/components/Header/headers";
 
 export const metadata = {
   title: "Gunaso Regestration",
