@@ -14,7 +14,7 @@ import {
   HeaderSideNavItems,
 } from "@carbon/react";
 import { Switcher, Notification, UserAvatar } from "@carbon/icons-react";
-import { Sun, Moon } from "@carbon/icons-react"; // Import sun and moon icons
+import { Sun, Moon } from "@carbon/icons-react";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 
