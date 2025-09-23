@@ -101,7 +101,6 @@ export default function GunasoForm() {
             <Dropdown
               id="carbon-dropdown"
               label="Select Category"
-              titleText=""
               items={categories}
               itemToString={(item) => (item ? item.text : "")}
               selectedItem={selectedCategory}
